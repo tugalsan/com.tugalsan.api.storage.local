@@ -1,7 +1,7 @@
 package com.tugalsan.api.storage.local.client;
 
 import com.google.gwt.storage.client.*;
-import com.tugalsan.api.executable.client.*;
+import com.tugalsan.api.runnable.client.*;
 import com.tugalsan.api.list.client.*;
 import com.tugalsan.api.log.client.*;
 import com.tugalsan.api.thread.client.*;
@@ -51,16 +51,16 @@ public class TGC_StorageLocalUtils {
         of().setItem(param.toString(), value.toString());
     }
 
-    public static void afterSet(CharSequence param, TGS_Executable exe) {
+    public static void afterSet(CharSequence param, TGS_Runnable exe) {
         var duration = 1;
-        TGC_ThreadUtils.execute_afterSeconds_afterGUIUpdate(t -> {
+        TGC_ThreadUtils.run_afterSeconds_afterGUIUpdate(t -> {
             var val = get(param);
             if (val == null) {
-                t.execute_afterSeconds(duration);
+                t.run_afterSeconds(duration);
                 return;
             }
             d.ci("afterSet", param, val);
-            exe.execute();
+            exe.run();
         }, duration);
     }
 
