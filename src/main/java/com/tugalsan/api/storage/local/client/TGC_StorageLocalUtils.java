@@ -7,7 +7,7 @@ import com.tugalsan.api.log.client.*;
 import com.tugalsan.api.thread.client.*;
 import java.util.*;
 import java.util.stream.*;
-import com.tugalsan.api.function.client.maythrow.uncheckedexceptions.TGS_FuncMTUCE;
+import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTU;
 
 public class TGC_StorageLocalUtils {
 
@@ -52,7 +52,7 @@ public class TGC_StorageLocalUtils {
         of().setItem(param.toString(), value.toString());
     }
 
-    public static void afterSet(CharSequence param, TGS_FuncMTUCE exe) {
+    public static void afterSet(CharSequence param, TGS_FuncMTU exe) {
         var duration = 1;
         TGC_ThreadUtils.run_afterSeconds_afterGUIUpdate(t -> {
             var val = get(param);
